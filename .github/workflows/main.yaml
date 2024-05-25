@@ -42,9 +42,12 @@ jobs:
               ports:
                 - 80:80
           " > docker-compose.yml
-        
+      - name: Transfer docker-compose.yml to remote Docker Swarm node
+        run: |
+          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 docker-compose.yml ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com:/home/docker-compose.yml  
+      
       - name: Deploy to docker swarm  
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml my_app_stack"
+          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c /home/docker-compose.yml my_app_stack"
 
 
