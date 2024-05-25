@@ -26,7 +26,7 @@ jobs:
           
       - name: Generate SSH key
         run: |
-          ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
+          ssh-keygen -R hostname -t ed25519 -P "" -f ~/.ssh/id_ed25519
 
       - name: Deploy to Docker Swarm
         run: |
