@@ -45,5 +45,6 @@ jobs:
         
       - name: Deploy to docker swarm  
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml my_app_stack"
+          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml my_app_stack"
+
 
