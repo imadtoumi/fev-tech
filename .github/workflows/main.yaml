@@ -28,7 +28,22 @@ jobs:
         run: |
           ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
 
-      - name: Deploy to Docker Swarm
+      - name: Deploy Docker stack
         run: |
-           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com 'mkdir /root/test' 
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com << 'EOF'
+          echo "
+          version: '3.8'
+          services:
+            web:
+              image: imadtoumi/interview:latest
+              deploy:
+                placement:
+                  constraints:
+                    - node.labels.role == worker
+              ports:
+                - 80:80
+          " > docker-compose.yml
+          docker stack deploy -c docker-compose.yml my_app_stack
+          EOF
+        shell: bash
 
