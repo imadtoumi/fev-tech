@@ -28,7 +28,7 @@ jobs:
         run: |
           ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
 
-      - name: Deploy to Docker swarm
+      - name: Create docker-compose.yaml
         run: |
           echo "
           version: '3.8'
@@ -42,6 +42,8 @@ jobs:
               ports:
                 - 80:80
           " > docker-compose.yml
-          
+        
+      - name: Deploy to docker swarm  
+        run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml my_app_stack"h
 
