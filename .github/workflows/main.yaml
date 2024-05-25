@@ -30,7 +30,7 @@ jobs:
 
       - name: Create docker-compose.yaml
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com '
+          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com '
           echo "
           version: '3.8'
           services:
@@ -42,10 +42,4 @@ jobs:
                     - node.labels.role == worker
               ports:
                 - 80:80
-          " > root/docker-compose.yml'
-          
-      - name: Deploy to docker swarm  
-        run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c root/docker-compose.yml my_app_stack"
-
-
+          " > docker-compose.yml'
