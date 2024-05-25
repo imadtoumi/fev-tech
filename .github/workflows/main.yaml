@@ -20,5 +20,5 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: imadtoumi/interview:tagname
+          tags: imadtoumi/interview:latest
 
