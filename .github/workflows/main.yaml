@@ -30,18 +30,5 @@ jobs:
 
       - name: Deploy to Docker Swarm
         run: |
-          echo "
-          version: '3.8'
-          services:
-            web:
-              image: docker pull imadtoumi/interview:latest
-              deploy:
-                placement:
-                  constraints:
-                    - node.labels.role == worker
-              ports:
-                - 80:80
-          " > docker-compose.yml
-          
-           ssh -o StrictHostKeyChecking=no ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml my_app_stack"
+           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp908faim2rg00fafbjg@direct.labs.play-with-docker.com 
 
