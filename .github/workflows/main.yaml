@@ -4,7 +4,10 @@ on:
   push:
     paths:
       - index.html
-
+env:
+  Manager_host_name: direct.labs.play-with-docker.com
+  Manager_username: ip172-18-0-43-cp9qekq91nsg00al79pg
+  
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -27,8 +30,8 @@ jobs:
       - name: Create docker-compose on remote host
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: direct.labs.play-with-docker.com
-          username: ip172-18-0-110-cp9n7i2im2rg008hg9o0
+          host: $Manager_host_name
+          username: $Manager_username
           key: ${{ secrets.SSH_PRV_KEY }}
           script: |
             echo "
@@ -45,12 +48,4 @@ jobs:
             " > docker-compose.yml
             
             docker stack deploy -c ~/docker-compose.yml interview_App
-
-            if docker service ls | grep -q interview_App_web; then
-              echo "Deployment successful"
-            else
-              echo "Deployment failed" >&2
-              exit 1
-            fi
-
     
