@@ -56,4 +56,9 @@ jobs:
           key: ${{ secrets.SSH_PRV_KEY }}
           script: |
             docker stack deploy -d -c ~/docker-compose.yml interview_app
+            while [[ $(docker service ps interview_app_web --format '{{.CurrentState}}') != "Running" ]]; do
+              echo "Waiting for service web to be healthy..."
+              sleep 10  # Adjust sleep interval as needed
+            done
+            echo "Service web is healthy!"hy!"
     
