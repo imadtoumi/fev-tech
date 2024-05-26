@@ -35,10 +35,10 @@ jobs:
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ip172-18-0-49-cp978liim2rg00fafkdg@direct.labs.play-with-docker.com
+          host: direct.labs.play-with-docker.comuser
+          name: ip172-18-0-49-cp978liim2rg00fafkdg
           key: ~/.ssh/id_ed25519
           script: whoami
-
       - name: try conenction 
         run : ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com 'ls'
           
