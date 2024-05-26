@@ -46,4 +46,11 @@ jobs:
             
             docker stack deploy -c ~/docker-compose.yml interview_App
 
+            if docker service ls | grep -q interview_App_web; then
+              echo "Deployment successful"
+            else
+              echo "Deployment failed" >&2
+              exit 1
+            fi
+
     
