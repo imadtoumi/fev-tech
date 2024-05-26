@@ -53,5 +53,6 @@ jobs:
           key: ${{ secrets.SSH_PRV_KEY }}
           script: |
             docker stack deploy -c /root/docker-compose.yml interview_App
+            docker service ls
 
     
