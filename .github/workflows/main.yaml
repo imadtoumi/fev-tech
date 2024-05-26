@@ -35,11 +35,11 @@ jobs:
               version: '3.8'
               services:
                 web:
-                  image: simplecloudquestions/example_docker:latest
+                  image: imadtoumi/interview:latest
                   deploy:
                     placement:
                       constraints:
-                        - node.labels.role == worker
+                        - node.role == worker
                   ports:
                     - 80:80
             " > docker-compose.yml
