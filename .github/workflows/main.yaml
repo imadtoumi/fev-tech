@@ -47,5 +47,14 @@ jobs:
                     - 80:80
             " > docker-compose.yml
             
-            docker stack deploy -c ~/docker-compose.yml interview_App
+
+      - name: Deploy docker container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ env.MANAGER_HOST_NAME }}
+          username: ${{ env.MANAGER_USERNAME }}
+          key: ${{ secrets.SSH_PRV_KEY }}
+          script: |
+            docker stack deploy -c ~/docker-compose.yml interview_app
+            docker service ls --format '{{.ID}} {{.Name}}' | grep $interview_app_web
     
