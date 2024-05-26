@@ -26,7 +26,6 @@ jobs:
 
       - name: Generate ssh key and connect
         run: | 
-          ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
-          ssh -vvv -o StrictHostKeyChecking=no ip172-18-0-110-cp9n7i2im2rg008hg9o0@direct.labs.play-with-docker.com "whoami"
+          ssh -vvv -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PUB_KEY }} ip172-18-0-110-cp9n7i2im2rg008hg9o0@direct.labs.play-with-docker.com "whoami"
 
     
