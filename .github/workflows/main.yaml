@@ -40,12 +40,13 @@ jobs:
           username: ip172-18-0-49-cp978liim2rg00fafkdg
           key: ${{ env.PRIVATE_KEY }}
           script: whoami
+          
       - name: try conenction 
-        run : ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com 'ls'
+        run : ssh -vvv -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com 'ls'
           
       - name: Create docker-compose.yaml
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com '
+          ssh -vvv -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com '
           echo "
           version: '3.8'
           services:
