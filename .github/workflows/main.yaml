@@ -24,7 +24,7 @@ jobs:
           push: true
           tags: imadtoumi/interview:latest
 
-      - name: Create docker-compose.yml on remote host
+      - name: Create docker-compose on remote host
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: direct.labs.play-with-docker.com
