@@ -43,16 +43,7 @@ jobs:
                   ports:
                     - 80:80
             " > docker-compose.yml
-
-
-      - name: Deploy Docker Stack
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: direct.labs.play-with-docker.com
-          username: ip172-18-0-110-cp9n7i2im2rg008hg9o0
-          key: ${{ secrets.SSH_PRV_KEY }}
-          script: |
+            
             docker stack deploy -c ~/docker-compose.yml interview_App
-            docker service ls
 
     
