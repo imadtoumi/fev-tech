@@ -6,7 +6,7 @@ on:
       - index.html
 env:
   Manager_host_name: direct.labs.play-with-docker.com
-  Manager_username: ip172-18-0-43-cp9qekq91nsg00al79pg
+  Manager_username: ssh ip172-18-0-66-cp9qekq91nsg00al79pg
   
 jobs:
   docker:
