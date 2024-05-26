@@ -27,24 +27,7 @@ jobs:
       - name: Generate SSH key
         run: ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
 
-      - name: List .ssh directory contents
-        run: ls -al ~/.ssh
-          
-      - name: try conenction 
-        run : ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-77-cp9j8q291nsg00fg2j2g@direct.labs.play-with-docker.com 'whoami'
-          
-      - name: Create docker-compose.yaml
+      - name: run ssh command
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com '
-          echo "
-          version: '3.8'
-          services:
-            web:
-              image: simplecloudquestions/example_docker:latest
-              deploy:
-                placement:
-                  constraints:
-                    - node.labels.role == worker
-              ports:
-                - 80:80
-          " > docker-compose.yml'
+          ssh -vvv -o StrictHostKeyChecking=no ip172-18-0-110-cp9n7i2im2rg008hg9o0@direct.labs.play-with-docker.com "whoami"
+
