@@ -55,7 +55,5 @@ jobs:
           username: ${{ env.MANAGER_USERNAME }}
           key: ${{ secrets.SSH_PRV_KEY }}
           script: |
-            docker stack deploy -c ~/docker-compose.yml interview_app
-            sleep 10
-            docker service ls --format '{{.ID}} {{.Name}}' | grep $interview_app_web
+            docker stack deploy -d -c ~/docker-compose.yml interview_app
     
