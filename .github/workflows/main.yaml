@@ -54,5 +54,5 @@ jobs:
           username: ${{ env.MANAGER_USERNAME }}
           key: ${{ secrets.SSH_PRV_KEY }}
           script: |
-            docker stack deploy -d -c ~/docker-compose.yml interview_app
+            docker stack deploy --detach -c ~/docker-compose.yml interview_app
     
