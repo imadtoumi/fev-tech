@@ -46,19 +46,11 @@ jobs:
                   ports:
                     - 80:80
             " > docker-compose.yml
+
+      - name: deploy
+        run: |
+          ssh -vvv -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com '
             
 
-      - name: Deploy docker container
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ env.MANAGER_HOST_NAME }}
-          username: ${{ env.MANAGER_USERNAME }}
-          key: ${{ secrets.SSH_PRV_KEY }}
-          script: |
-            docker stack deploy -d -c ~/docker-compose.yml interview_app
-            while [[ $(docker service ps interview_app_web --format '{{.CurrentState}}') != "Running" ]]; do
-              echo "Waiting for service web to be healthy..."
-              sleep 10  # Adjust sleep interval as needed
-            done
-            echo "Service web is healthy!"hy!"
+      
     
