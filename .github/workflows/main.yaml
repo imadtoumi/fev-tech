@@ -25,24 +25,13 @@ jobs:
           tags: imadtoumi/interview:latest
 
       - name: Generate SSH key
-        id: generate_key
-        run: |
-          ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
-          echo "PRIVATE_KEY=$(cat ~/.ssh/id_ed25519)" >> $GITHUB_ENV
+        run: ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
 
       - name: List .ssh directory contents
         run: ls -al ~/.ssh
-
-      - name: executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: direct.labs.play-with-docker.comuser
-          username: ip172-18-0-49-cp978liim2rg00fafkdg
-          key: ${{ env.PRIVATE_KEY }}
-          script: whoami
           
       - name: try conenction 
-        run : ssh -vvv -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ip172-18-0-125-cp93qv8l2o9000fu7d10@direct.labs.play-with-docker.com 'ls'
+        run : ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ip172-18-0-77-cp9j8q291nsg00fg2j2g@direct.labs.play-with-docker.com 'whoami'
           
       - name: Create docker-compose.yaml
         run: |
