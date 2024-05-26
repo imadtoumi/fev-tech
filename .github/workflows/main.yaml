@@ -24,6 +24,10 @@ jobs:
           push: true
           tags: imadtoumi/interview:latest
 
+      - name: Generate ssh key
+        run: | 
+          ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519
+
       - name: run ssh command
         run: |
           ssh -vvv -o StrictHostKeyChecking=no ip172-18-0-110-cp9n7i2im2rg008hg9o0@direct.labs.play-with-docker.com "whoami"
