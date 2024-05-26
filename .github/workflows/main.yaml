@@ -49,7 +49,7 @@ jobs:
 
       - name: deploy
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ip172-18-0-66-cp9qekq91nsg00al79pg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml"
+          ssh -vvv -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRV_KEY }} ip172-18-0-66-cp9qekq91nsg00al79pg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml"
             
 
       
