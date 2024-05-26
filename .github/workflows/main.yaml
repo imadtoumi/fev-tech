@@ -26,7 +26,7 @@ jobs:
 
       - name: Add key to ssh file
         run: |
-          cat ${{ secrets.SSH_PRV_KEY }} >> ~/.ssh/id_ed25519
+          echo "${{ secrets.SSH_PRV_KEY }}" >> ~/.ssh/id_ed25519
 
       - name: cat the ssh file
         run: cat ~/.ssh/id_ed25519
