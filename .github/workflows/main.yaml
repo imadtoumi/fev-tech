@@ -43,6 +43,6 @@ jobs:
                   ports:
                     - 80:80
             " > docker-compose.yml
-            docker stack deploy -c docker-compose.yml interview_App
+            docker stack deploy -c /root/docker-compose.yml interview_App
 
     
