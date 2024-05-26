@@ -27,9 +27,11 @@ jobs:
       - name: Add key to ssh file
         run: |
           echo "${{ secrets.SSH_PRV_KEY }}" >> ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
       - name: cat the ssh file
-        run: cat ~/.ssh/id_ed25519
+        run: |
+          cat ~/.ssh/id_ed25519
 
       - name: Generate ssh key and connect
         run: | 
