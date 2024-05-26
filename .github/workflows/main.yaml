@@ -47,10 +47,12 @@ jobs:
                     - 80:80
             " > docker-compose.yml
 
-      - name: deploy
-        run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRV_KEY }} ip172-18-0-66-cp9qekq91nsg00al79pg@direct.labs.play-with-docker.com "docker stack deploy -c docker-compose.yml"
-            
-
-      
+      - name: Deploy docker container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ env.MANAGER_HOST_NAME }}
+          username: ${{ env.MANAGER_USERNAME }}
+          key: ${{ secrets.SSH_PRV_KEY }}
+          script: |
+            docker stack deploy -d -c ~/docker-compose.yml interview_app
     
