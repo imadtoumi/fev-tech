@@ -24,6 +24,14 @@ jobs:
           push: true
           tags: imadtoumi/interview:latest
 
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: direct.labs.play-with-docker.com
+          username: ip172-18-0-49-cp978liim2rg00fafkdg
+          key: ${{ secrets.SSH_PRV_KEY }}
+          script: whoami
+
       - name: Add key to ssh file
         run: |
           echo "${{ secrets.SSH_PRV_KEY }}" >> ~/.ssh/id_ed25519
