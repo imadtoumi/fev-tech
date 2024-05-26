@@ -28,7 +28,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: direct.labs.play-with-docker.com
-          username: ip172-18-0-49-cp978liim2rg00fafkdg
+          username: ip172-18-0-110-cp9n7i2im2rg008hg9o0
           key: ${{ secrets.SSH_PRV_KEY }}
           script: whoami
 
