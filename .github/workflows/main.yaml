@@ -13,15 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Add SSH private key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_PRV_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519 
-          cat ~/.ssh/id_ed25519
+      - name: generate sshkey
+        run : |
+          ssh-keygen -t ed25519 -P "" -f ~/.ssh/id_ed25519 
 
       - name: Test ssh connection
         run: |
-           ssh -vvv -o StrictHostKeyChecking=no ${{ env.MANAGER_USERNAME }}@${{ env.MANAGER_HOST_NAME }} "whoami"
+           ssh -vvv -o StrictHostKeyChecking=no ip172-18-0-99-cpb28niim2rg00cm0kkg@direct.labs.play-with-docker.com "whoami"
            
             
