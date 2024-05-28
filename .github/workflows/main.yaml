@@ -13,32 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Add SSH key to the agent
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRV_KEY }}
+      - name: Add SSH private key
+        run: |
+          echo "${{ secrets.SSH_PRV_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519   
 
       - name: Test ssh connection
         run: |
            ssh -o StrictHostKeyChecking=no ${{ env.MANAGER_USERNAME }}@${{ env.MANAGER_HOST_NAME }} "whoami"
            
-      - name: Create docker-compose on remote host
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ env.MANAGER_HOST_NAME }}
-          username: ${{ env.MANAGER_USERNAME }}
-          key: ${{ secrets.SSH_PRV_KEY }}
-          script: |
-            echo "
-              version: '3.8'
-              services:
-                web:
-                  image: imadtoumi/interview:latest
-                  deploy:
-                    placement:
-                      constraints:
-                        - node.role == worker
-                  ports:
-                    - 80:80
-            " > docker-compose.yml
-            docker stack deploy -c ~/docker-compose.yml interview_app            
+            
