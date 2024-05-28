@@ -17,10 +17,11 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo "${{ secrets.SSH_PRV_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519   
+          chmod 600 ~/.ssh/id_ed25519 
+          ls ~/.ssh/
 
       - name: Test ssh connection
         run: |
-           ssh -o StrictHostKeyChecking=no ${{ env.MANAGER_USERNAME }}@${{ env.MANAGER_HOST_NAME }} "whoami"
+           ssh -vvv -o StrictHostKeyChecking=no ${{ env.MANAGER_USERNAME }}@${{ env.MANAGER_HOST_NAME }} "whoami"
            
             
